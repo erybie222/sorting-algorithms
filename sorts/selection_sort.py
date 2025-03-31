@@ -5,3 +5,4 @@ def selectionSort(A):
             if A[j] < A[smallest_index]:
                 smallest_index = j
         A[i] , A[smallest_index] = A[smallest_index] , A[i]
+
