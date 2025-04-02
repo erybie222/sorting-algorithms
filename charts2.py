@@ -9,7 +9,7 @@ from sorts.quick_sort_recursive import quickSortRecursive
 
 
 
-sizes = [20000+ i * 20_000 for i in range(15)]
+sizes = [20000+ i * 20000 for i in range(15)]
 times_heap = []
 times_merge = []
 times_quick = []

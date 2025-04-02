@@ -5,7 +5,7 @@ from random_numbers_generator import aShapeArrayGenerator, arrayGenerator
 import sys
 sys.setrecursionlimit(10**5)
 
-sizes = [50_000 + i * 50_000 for i in range(15)]
+sizes = [5000 + i * 5000 for i in range(15)]
 times_right_pivot = []
 times_mid_pivot = []
 times_random_pivot = []
@@ -30,6 +30,5 @@ plt.ylabel('Czas wykonania (t[s])')
 plt.title('Porównanie czasów sortowania Quick Sort w zależności od wyboru pivota')
 plt.legend()
 plt.grid(True)
-plt.yscale('log')  # opcjonalnie – jeśli różnice są duże
 plt.tight_layout()
 plt.show()

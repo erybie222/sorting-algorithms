@@ -9,7 +9,7 @@ from sorts.selection_sort import selectionSort
 
 
 
-sizes = [500 + i * 1000 for i in range(15)]
+sizes = [5000 + i * 1000 for i in range(15)]
 times_bubble = []
 times_insertion = []
 times_selection = []

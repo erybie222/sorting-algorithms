@@ -7,7 +7,7 @@ from sorts.merge_sort import mergeSort
 from sorts.selection_sort import selectionSort
 import sys
 sys.setrecursionlimit(10**5)
-sizes = [2000 + i * 2000 for i in range(15)]
+sizes = [3000 + i * 3000 for i in range(15)]
 def plot_all_types_in_one_figure(sizes, results):
     import matplotlib.pyplot as plt
 
