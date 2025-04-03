@@ -12,7 +12,7 @@ sizes = [7000 + i * 7000 for i in range(15)]
 
 # Funkcja generująca wykres dla pojedynczego typu danych
 def plot_grouped_algorithms(sizes, results, title, data_type):
-    if data_type == 'increasing':
+    if data_type in ('increasing', 'constant'):
         # Wykres 1 – tylko Insertion Sort
         plt.figure(figsize=(14, 6))
         plt.title(f"{title} – tylko Insertion Sort", fontsize=16)
