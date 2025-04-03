@@ -11,22 +11,31 @@ sys.setrecursionlimit(10**5)
 sizes = [7000 + i * 7000 for i in range(15)]
 
 # Funkcja generująca wykres dla pojedynczego typu danych
-def plot_single_data_type(sizes, results, data_type, title):
+def plot_grouped_algorithms(sizes, results, title):
+    # Wolne sortowania
     plt.figure(figsize=(14, 8))
-
-    plt.title(title, fontsize=16)
+    plt.title(f"{title} – wolne algorytmy", fontsize=16)
     plt.xlabel("Rozmiar tablicy", fontsize=14)
     plt.ylabel("Czas [s]", fontsize=14)
-
     plt.plot(sizes, results['insertion'], label='Insertion Sort', marker='o', linestyle='-', linewidth=2)
     plt.plot(sizes, results['selection'], label='Selection Sort', marker='s', linestyle='--', linewidth=2)
-    plt.plot(sizes, results['heap'], label='Heap Sort', marker='^', linestyle='-.', linewidth=2)
-    plt.plot(sizes, results['merge'], label='Merge Sort', marker='D', linestyle=':', linewidth=2)
-
-    plt.legend(fontsize=12)
+    plt.legend()
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
+    # Szybkie sortowania
+    plt.figure(figsize=(14, 8))
+    plt.title(f"{title} – szybkie algorytmy", fontsize=16)
+    plt.xlabel("Rozmiar tablicy", fontsize=14)
+    plt.ylabel("Czas [s]", fontsize=14)
+    plt.plot(sizes, results['heap'], label='Heap Sort', marker='^', linestyle='-.', linewidth=2)
+    plt.plot(sizes, results['merge'], label='Merge Sort', marker='D', linestyle=':', linewidth=2)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
 data_types = ['random', 'increasing', 'decreasing', 'vshape', 'constant']
 titles = ['Dane losowe', 'Dane rosnące', 'Dane malejące', 'Dane V-kształtne', 'Dane stałe']
 
@@ -55,4 +64,5 @@ for data_type, title in zip(data_types, titles):
         results['heap'].append(measureTime(array_to_test.copy(), heapSort))
         results['merge'].append(measureTime(array_to_test.copy(), mergeSort))
 
-    plot_single_data_type(sizes, results, data_type, title)
+    plot_grouped_algorithms(sizes, results, title)
+
