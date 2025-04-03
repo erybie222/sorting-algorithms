@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from measureSort import measureTime
-from random_numbers_generator import arrayGenerator, decreasingArrayGenerator, increasingArrayGenerator, vShapeArrayGenerator
+from random_numbers_generator import arrayGenerator, constantArrayGenerator, decreasingArrayGenerator, increasingArrayGenerator, vShapeArrayGenerator
 from sorts.heap_sort import heapSort
 from sorts.insertion_sort import insertionSort
 from sorts.merge_sort import mergeSort
@@ -8,7 +8,7 @@ from sorts.selection_sort import selectionSort
 import sys
 sys.setrecursionlimit(10**5)
 
-sizes = [3000 + i * 3000 for i in range(15)]
+sizes = [7000 + i * 7000 for i in range(15)]
 
 # Funkcja generująca wykres dla pojedynczego typu danych
 def plot_single_data_type(sizes, results, data_type, title):
@@ -35,6 +35,7 @@ generators = {
     'random': lambda arr, n: arr,
     'increasing': increasingArrayGenerator,
     'decreasing': decreasingArrayGenerator,
+    'constant': constantArrayGenerator,
     'vshape': vShapeArrayGenerator
 }
 
@@ -43,7 +44,7 @@ for data_type, title in zip(data_types, titles):
 
     for n in sizes:
         base_array = arrayGenerator(n, sizes[-1]*10)
-        array_to_test = generators[data_type](base_array.copy(), n) if data_type != 'random' else base_array.copy()
+        array_to_test = generators[data_type](base_array.copy()) if data_type != 'random' else base_array.copy()
 
         results['insertion'].append(measureTime(array_to_test.copy(), insertionSort))
         results['selection'].append(measureTime(array_to_test.copy(), selectionSort))

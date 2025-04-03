@@ -5,7 +5,7 @@ from random_numbers_generator import aShapeArrayGenerator, arrayGenerator
 import sys
 sys.setrecursionlimit(10**5)
 
-sizes = [5000 + i * 5000 for i in range(15)]
+sizes = [20000 + i * 20000 for i in range(15)]
 times_right_pivot = []
 times_mid_pivot = []
 times_random_pivot = []

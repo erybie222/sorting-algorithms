@@ -33,3 +33,6 @@ def aShapeArrayGenerator(A, n):
     second_half.sort(reverse=True)
     
     return first_half + second_half
+
+def constantArrayGenerator(n, value=0):
+    return [value for _ in range(n)]
