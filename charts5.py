@@ -27,29 +27,32 @@ def plot_single_data_type(sizes, results, data_type, title):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
-
-data_types = ['random', 'increasing', 'decreasing', 'vshape']
-titles = ['Dane losowe', 'Dane rosnące', 'Dane malejące', 'Dane V-kształtne']
+data_types = ['random', 'increasing', 'decreasing', 'vshape', 'constant']
+titles = ['Dane losowe', 'Dane rosnące', 'Dane malejące', 'Dane V-kształtne', 'Dane stałe']
 
 generators = {
     'random': lambda arr, n: arr,
     'increasing': increasingArrayGenerator,
     'decreasing': decreasingArrayGenerator,
-    'constant': constantArrayGenerator,
-    'vshape': vShapeArrayGenerator
+    'vshape': vShapeArrayGenerator,
+    'constant': lambda arr, n: constantArrayGenerator(n, arr[0] if arr else 0)
 }
+
 
 for data_type, title in zip(data_types, titles):
     results = {'insertion': [], 'selection': [], 'heap': [], 'merge': []}
 
     for n in sizes:
         base_array = arrayGenerator(n, sizes[-1]*10)
-        array_to_test = generators[data_type](base_array.copy()) if data_type != 'random' else base_array.copy()
+
+        if data_type == 'random':
+            array_to_test = base_array.copy()
+        else:
+            array_to_test = generators[data_type](base_array.copy(), n)
 
         results['insertion'].append(measureTime(array_to_test.copy(), insertionSort))
         results['selection'].append(measureTime(array_to_test.copy(), selectionSort))
         results['heap'].append(measureTime(array_to_test.copy(), heapSort))
         results['merge'].append(measureTime(array_to_test.copy(), mergeSort))
 
-    # Po zakończeniu pomiarów dla danego typu danych, wyświetlamy wykres:
     plot_single_data_type(sizes, results, data_type, title)
